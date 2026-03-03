@@ -1,0 +1,7 @@
+Requirements -
+
+Python Libraries
+geopy
+numpy 
+pandas
+flask
