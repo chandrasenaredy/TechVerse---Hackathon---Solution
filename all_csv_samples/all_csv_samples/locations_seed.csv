@@ -1,0 +1,6 @@
+id,name,address,pincode,latitude,longitude,open_time,close_time
+1,Central Clinic,12 MG Road,600042,13.05,80.21,9:00,18:00
+2,Westside Clinic,88 West St,600050,13.07,80.17,10:00,17:00
+3,East Clinic,44 East Ave,600041,13.02,80.25,14:00,9:00
+4,South Clinic,55 South Rd,600060,12.99,80.2,9:00 AM,5:00 PM
+5,North Clinic,77 North Ln,600061,89,81,9:00,18:00
