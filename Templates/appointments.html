@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<title>Appointments</title>
+</head>
+
+<body>
+
+<h2>Booked Appointments</h2>
+
+<table border="1">
+
+<tr>
+<th>ID</th>
+<th>Patient</th>
+<th>Doctor</th>
+<th>Date</th>
+<th>Symptoms</th>
+</tr>
+
+{% for row in data %}
+
+<tr>
+<td>{{row.id}}</td>
+<td>{{row.patient_name}}</td>
+<td>{{row.doctor_name}}</td>
+<td>{{row.appointment_date}}</td>
+<td>{{row.symptoms}}</td>
+</tr>
+
+{% endfor %}
+
+</table>
+
+</body>
+</html>

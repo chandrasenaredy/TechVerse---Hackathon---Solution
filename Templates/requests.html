@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>HCL — Requests</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  :root {
+    --ink:#0f1117; --paper:#f5f2eb; --cream:#ede9de;
+    --teal:#1a6b6b; --teal2:#144f4f; --gold:#c5913a;
+    --red:#b84040; --border:#ccc8bc;
+    --shadow:0 4px 24px rgba(15,17,23,.10);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);min-height:100vh}
+  nav{background:var(--ink);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px}
+  .nav-brand{font-family:'DM Serif Display',serif;color:#fff;font-size:1.5rem}
+  .nav-brand span{color:var(--gold)}
+  .nav-links{display:flex;gap:1.8rem}
+  .nav-links a{color:#aaa;text-decoration:none;font-size:.88rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;transition:color .2s}
+  .nav-links a:hover,.nav-links a.active{color:#fff}
+  .hero{background:#5a3a6b;color:#fff;padding:3rem 2.5rem 2.5rem}
+  .hero h1{font-family:'DM Serif Display',serif;font-size:2.4rem;line-height:1.15}
+  .hero h1 em{font-style:italic;color:#d8b8f0}
+  main{max-width:900px;margin:0 auto;padding:2.5rem 2rem}
+  .card{background:#fff;border:1px solid var(--border);border-radius:2px;box-shadow:var(--shadow);overflow:hidden}
+  .card-header{background:var(--cream);border-bottom:1px solid var(--border);padding:.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between}
+  .card-header h2{font-family:'DM Serif Display',serif;font-size:1.2rem}
+  .card-body{padding:1.5rem}
+  .form-group{display:flex;flex-direction:column;gap:.35rem;margin-bottom:1rem}
+  label{font-size:.78rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#555}
+  input,select,textarea{border:1px solid var(--border);border-radius:2px;padding:.55rem .8rem;font-size:.92rem;font-family:inherit;background:var(--paper);color:var(--ink);transition:border-color .2s}
+  input:focus,select:focus,textarea:focus{outline:none;border-color:#5a3a6b;box-shadow:0 0 0 3px rgba(90,58,107,.15)}
+  textarea{resize:vertical;min-height:80px}
+  .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.6rem 1.4rem;border:none;border-radius:2px;font-family:inherit;font-size:.88rem;font-weight:600;cursor:pointer;transition:all .2s}
+  .btn-primary{background:#5a3a6b;color:#fff}
+  .btn-primary:hover{background:#3f2450}
+  .btn-sm{padding:.35rem .9rem;font-size:.8rem}
+  .btn-outline{background:transparent;border:1px solid var(--border);color:var(--ink)}
+  .btn-outline:hover{background:var(--cream)}
+  table{width:100%;border-collapse:collapse;font-size:.9rem}
+  thead tr{border-bottom:2px solid var(--ink)}
+  th{padding:.7rem 1rem;text-align:left;font-size:.75rem;text-transform:uppercase;letter-spacing:.07em;color:#555;font-weight:600}
+  tbody tr{border-bottom:1px solid var(--cream);transition:background .15s}
+  tbody tr:hover{background:var(--cream)}
+  td{padding:.75rem 1rem}
+  .badge{display:inline-block;padding:.2rem .7rem;border-radius:99px;font-size:.72rem;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
+  .badge-pending{background:#f5e8cd;color:#8a5f10}
+  .badge-in_progress{background:#d0e4ed;color:#2a4f6e}
+  .badge-resolved{background:#d0eddc;color:#2a7a4b}
+  .empty{text-align:center;padding:3rem;color:#888;font-size:.9rem}
+  .empty-icon{font-size:2.5rem;display:block;margin-bottom:.5rem}
+  .section-gap{margin-top:2rem}
+  .flex-end{display:flex;justify-content:flex-end;margin-top:1rem}
+  #toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:#fff;padding:.9rem 1.5rem;border-radius:2px;font-size:.88rem;box-shadow:var(--shadow);transform:translateY(150%);transition:transform .3s ease;z-index:999;border-left:4px solid #5a3a6b}
+  #toast.show{transform:translateY(0)}
+  #toast.error{border-left-color:var(--red)}
+  .status-sel{font-size:.78rem;padding:.2rem .5rem;border-radius:99px}
+</style>
+</head>
+<body>
+<nav>
+  <span class="nav-brand">HCL <span>Health</span></span>
+  <div class="nav-links">
+    <a href="/">Patients</a>
+    <a href="/appointments">Appointments</a>
+    <a href="/requests-page" class="active">Requests</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <h1>Service <em>Requests</em></h1>
+  <p style="margin-top:.8rem;opacity:.8;font-size:.9rem;">Raise and track internal service requests.</p>
+</div>
+
+<main>
+  <!-- CREATE REQUEST -->
+  <div class="card">
+    <div class="card-header"><h2>New Request</h2></div>
+    <div class="card-body">
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" id="r_title" placeholder="Brief summary of the request"/>
+      </div>
+      <div class="form-group">
+        <label>Description</label>
+        <textarea id="r_desc" placeholder="Detailed description…"></textarea>
+      </div>
+      <div class="flex-end">
+        <button class="btn btn-primary" onclick="createRequest()">＋ Submit Request</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- REQUESTS TABLE -->
+  <div class="card section-gap">
+    <div class="card-header">
+      <h2>All Requests</h2>
+      <button class="btn btn-outline btn-sm" onclick="loadRequests()">↻ Refresh</button>
+    </div>
+    <div style="overflow-x:auto">
+      <table>
+        <thead>
+          <tr><th>#</th><th>Title</th><th>Description</th><th>Status</th><th>Created</th></tr>
+        </thead>
+        <tbody id="req-tbody">
+          <tr><td colspan="5" class="empty"><span class="empty-icon">⏳</span>Loading…</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</main>
+<div id="toast"></div>
+
+<script>
+const API = '';
+function toast(msg,isError=false){
+  const t=document.getElementById('toast');
+  t.textContent=msg; t.className='show'+(isError?' error':'');
+  setTimeout(()=>t.className='',3000);
+}
+
+async function loadRequests(){
+  const tbody=document.getElementById('req-tbody');
+  tbody.innerHTML=`<tr><td colspan="5" class="empty">⏳ Loading…</td></tr>`;
+  try {
+    const data=await fetch(`${API}/api/requests`).then(r=>r.json());
+    if(!data.length){tbody.innerHTML=`<tr><td colspan="5" class="empty"><span class="empty-icon">📭</span>No requests yet.</td></tr>`;return;}
+    tbody.innerHTML=data.map(r=>`
+      <tr>
+        <td style="color:#888;font-size:.8rem">#${r.id}</td>
+        <td><strong>${r.title}</strong></td>
+        <td style="max-width:260px;font-size:.85rem;color:#555">${r.description||'—'}</td>
+        <td>
+          <select class="status-sel badge badge-${r.status}" onchange="updateReqStatus(${r.id},this.value,this)">
+            <option value="pending"     ${r.status==='pending'     ?'selected':''}>Pending</option>
+            <option value="in_progress" ${r.status==='in_progress' ?'selected':''}>In Progress</option>
+            <option value="resolved"    ${r.status==='resolved'    ?'selected':''}>Resolved</option>
+          </select>
+        </td>
+        <td style="font-size:.8rem;color:#777">${(r.created_at||'').slice(0,10)}</td>
+      </tr>
+    `).join('');
+  } catch(e){
+    tbody.innerHTML=`<tr><td colspan="5" class="empty" style="color:#b84040">⚠ Cannot connect to backend.</td></tr>`;
+  }
+}
+
+async function createRequest(){
+  const payload={title:document.getElementById('r_title').value.trim(),description:document.getElementById('r_desc').value.trim()};
+  if(!payload.title){toast('Title is required.',true);return;}
+  const res=await fetch(`${API}/api/requests`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});
+  const data=await res.json();
+  if(res.ok){toast('✓ Request submitted!');document.getElementById('r_title').value='';document.getElementById('r_desc').value='';loadRequests();}
+  else toast(data.error||'Failed',true);
+}
+
+async function updateReqStatus(id,status,el){
+  el.className=`status-sel badge badge-${status}`;
+  const res=await fetch(`${API}/api/requests/${id}`,{method:'PUT',headers:{'Content-Type':'application/json'},body:JSON.stringify({status})});
+  if(res.ok)toast('Status updated.');
+  else toast('Update failed.',true);
+}
+
+loadRequests();
+</script>
+</body>
+</html>
