@@ -1,0 +1,12 @@
+name,email,phone,pincode,location_id,visit_date,reason
+Anita,anita@mail.com,900100001,600042,1,15-03-2026,Headache
+Vijay,vijay@mail.com,900100002,600050,2,15-03-2026,Skin rash
+Saira,saira@mail.com,900100003,600042,,15-03-2026,Cold
+Rohit,rohit[at]mail.com,900100004,600042,1,15-03-2026,Stomach pain
+Maya,maya@mail.com,#NAME?,600050,2,15-03-2026,Back pain
+Dev,dev@mail.com,900100005,600042,1,15-03-2026,Checkup
+Karan,karan@mail.com,900100006,600042,1,15-03-2026,Allergy
+Vijay,vijay@mail.com,900100009,600050,2,15-03-2026,Eye irritation
+Nikita,nikita@mail.com,900100010,,1,15-03-2026,Headache
+anand,ANAND@MAIL.COM,900100011,600042,1,15-03-2026,fever
+Pooja,pooja@mail.com,900100012,600050,2,01-01-2027,General checkup
