@@ -1,0 +1,8 @@
+patient_id,name,dob,email,phone,pincode,latitude,longitude
+101,Anita,01-02-1993,anita@mail.com,900100001,600042,13.06,80.22
+102,Vijay,12-11-1989,vijay@mail.com,900100002,600050,13.08,80.16
+103,Meera,05-12-1990,meera@mail.com,900100003,600042,13.05,80.25
+104,Santosh,09-07-1992,"m1@mail,com",900100004,600050,13.09,80.15
+105,Nikhil,18-03-1995,nikhil@mail.com,900100005,600042,89,20
+106,Meera,05-12-1990,meera2@mail.com,900100003,600042,13.05,80.25
+107,priya,21-08-1991,PRIYA@MAIL.COM,900100006,600050,13.04,80.2

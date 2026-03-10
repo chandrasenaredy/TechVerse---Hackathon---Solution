@@ -1,0 +1,8 @@
+id,patient_id,doctor_id,drug_name,dosage,refill_due_date,active
+501,101,1,Atorvastatin,10mg,2026-03-18,1
+502,102,2,Cetirizine,10mg,2026-03-19,1
+503,101,1,Metformin,500mg,2026-02-28,1
+504,102,2,Fluticasone,Nasal Spray,2026-03-20,0
+505,103,1,,20mg,2026-03-21,1
+506,104,1,Losartan,50mg,2026-03-21,1
+507,105,1,Levothyroxine,75mcg,2026-03-22,1
